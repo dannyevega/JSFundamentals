@@ -30,3 +30,17 @@ STRING: a sequence of characters contained inside of single or double quotes
 SYMBOL: used in ES6
 */
 
+// OPERATORS
+
+/*
+A special function that is syntactically written differently -- they generally take two parameters and return one result
+
+Pre-written code within JS inside of operators like addition (+) and subtraction (-)
+
+Operators are functions
+
+below code will execute because the addition is a function
+*/
+
+var a = 3 + 4;
+console.log(a);
