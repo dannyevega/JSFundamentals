@@ -1,17 +1,10 @@
-// long running function
-function waitThreeSeconds() {
-    var ms = 3000 + new Date().getTime();
-    while (new Date() < ms){}
-    console.log('finished function');
+var objectLiteral = {
+	firstName: "Juan",
+	isAProgrammer: true
 }
 
-function clickHandler() {
-    console.log('click event!');
-}
+console.log(JSON.stringify(objectLiteral));
 
-// listen for the click event
-document.addEventListener('click', clickHandler);
+var jsonValue = JSON.parse('{ "firstName": "Juan", "isAProgrammer": true }');
 
-
-waitThreeSeconds();
-console.log('finished execution');
+console.log(jsonValue);
