@@ -1,5 +1,21 @@
-var firstName = "Danny";
-(function(name){
-	var greeting = "Hello ";
-	console.log(greeting + name);
-}(firstName));
+function buildFunctions(){
+	var arr = [];
+	
+	for(var i = 0; i < 3; i++){
+		arr.push(
+			(function(j){
+				return function(){
+					console.log(j + 1);
+				}
+			}(i))
+		)
+	}
+	
+	return arr;
+}
+
+var fs = buildFunctions();
+fs[0]();
+fs[1]();
+fs[2]();
+
