@@ -1,10 +1,5 @@
-var objectLiteral = {
-	firstName: "Juan",
-	isAProgrammer: true
-}
-
-console.log(JSON.stringify(objectLiteral));
-
-var jsonValue = JSON.parse('{ "firstName": "Juan", "isAProgrammer": true }');
-
-console.log(jsonValue);
+var firstName = "Danny";
+(function(name){
+	var greeting = "Hello ";
+	console.log(greeting + name);
+}(firstName));
