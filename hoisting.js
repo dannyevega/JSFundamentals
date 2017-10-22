@@ -30,7 +30,7 @@ The reason why JS behaves the way it does is due to the Execution Context which 
 
 Creation phase: Global Object, 'this', Outer Environment and the JS parser recognizes where you've created function declaration and variable declarations -- all in memory
 
-HOISTING -- > JS sets up memory space for variables and functions known as Hoisting. Its not actually moving code to the top of the file. All this means is that before our code begins to be executed line by line, the JS engine has already set aside memory space for the variables and functions you created in the code youve built. These all exist in memory. When the code begins to run line by line, it can acess them.
+HOISTING -- > JS sets up memory space for variables and functions known as Hoisting. Its not actually moving code to the top of the file. All this means is that before our code begins to be executed line by line, the JS engine has already set aside memory space for the variables and functions declarations you created in the code youve built. These all exist in memory. When the code begins to run line by line, it can acess them.
 
 Execution phase is when these assignments are set -- the code is ran line by line
 

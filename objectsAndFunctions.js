@@ -174,7 +174,7 @@ console.log(d); // prints hello
 function changeGreeting(obj){
 	obj.greeting = "Hola"; // mutate
 }
-changeGreeting(d);
+changeGreeting(c);
 console.log(c); // prints Hola
 console.log(d); // prints Hola
 

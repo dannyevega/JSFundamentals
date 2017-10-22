@@ -151,3 +151,65 @@ fs3[1]();
 fs3[2]();
 
 
+
+// FUNCTION FACTORIES
+
+// the makeGreeting function below just returns a function
+
+// Even though these two functions sit lexically within the same makeGreeting function, they're going to point to two different spots in memory because they were created during two different execution contexts
+
+function makeGreeting(language){
+	return function(firstName, lastName){
+		if(language === 'en'){
+			console.log("Hello " + firstName + " " + lastName);
+		}
+		if(language === 'es'){
+			console.log("Hola " + firstName + " " + lastName);
+		}
+	}
+}
+
+var english = makeGreeting("en"); // unique execution context -- wrapped up in closure pointing to 'en' as language
+var spanish = makeGreeting("es"); // unique execution context -- wrapped up in closure pointing to 'es' as language
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
