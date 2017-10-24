@@ -158,6 +158,12 @@ fs3[2]();
 
 // Even though these two functions sit lexically within the same makeGreeting function, they're going to point to two different spots in memory because they were created during two different execution contexts
 
+// enlish is a function Object whose closure points to language being english
+
+// spanish is another function Object whose closure points to a different execution context for the same function whose language points to Spanish
+
+// Main takeaway: even though theyre the same functions, a new execution context is created everytime we execute it with new memory space no matter how many times we call it
+
 function makeGreeting(language){
 	return function(firstName, lastName){
 		if(language === 'en'){
@@ -172,44 +178,63 @@ function makeGreeting(language){
 var english = makeGreeting("en"); // unique execution context -- wrapped up in closure pointing to 'en' as language
 var spanish = makeGreeting("es"); // unique execution context -- wrapped up in closure pointing to 'es' as language
 
+english("Juan", "Doe");
+spanish("Juan", "Doe");
+
+// Walk through of code above:
+
+// Global execution context has makeGreeting, english and spanish
+
+// When line 178 is ran, makeGreeting is executed and creates its own execution context with language being 'en' then it returns a function which is stored in the english variable -- makeGreeting ends and the memory space for this exeuction context is still hanging around
+
+
+// Now when we run lines 179, another makeGreeting function is executed creating its own execution context with language being 'es' -- then it returns a function which is stored in the spanish variable -- makeGreeting ends and the memory space for this exeuction context is still hanging around
+
+// We have two spots in memory hanging out with those two separate execution contexts once contained
+
+// Now when we get to line 181 where invoke english where the inner function was returned, that creates a new execution context with firstName Juan and lastName Doe -- in this outer environment reference, we know it needs to point to one execution context created by makeGreeting cause thats where it sits lexically -- JS engine knows the first execution context was created during that first execution context so it points to that one (language being 'en') --> this is where our closure is
+
+// When we hit line 182, same process happens but its pointing to a different execution context with language being 'es' forming its own closure
+
+// makeGreeting is returning a function that has access to what the language variable was at the time it was created by pointing to that memory space -- this lets us create functions from other functions
 
 
 
+// CLOSURES AND CALLBACKS
+function sayHiLater(){
+	var greeting = "Hi!";
 
+	setTimeout(function(){
+		console.log(greeting);
+	}, 3000);
+}
 
+sayHiLater();
 
+// What happens? After 3 seconds, it will print the contents of greetin variable -- were using function expressions --> closures
 
+// setTimeout takes a function Object(function expression) -- were passing it as a parameter along with the time to wait -- taking advantage of first class functions and being able to pass around
 
+// now sayHiLater finishes -- remember asynchronous processes? Well, setTimeout goes off into the browser counts the 3000 miliseconds and drops an event when its finished -- the JS engine checks if there are any functions listening for this event and it finds one (function expression inside of setTimeout)
 
+// greeting variable doesnt exist in the function expression and sayHiLater has already finished running --> it goes up the scope chain and it has a closure for the greeting variable - it knows the memory space when sayHiLater was running and its execution context -- thanks to closures, the function expression has access to the greeting variable although it finished executing
 
+// functions that do something after youve ran another function (i.e. function expression executing after setTimeout has finished) -->giving the function expression to another function (setTimeout) and having it do something when its dones(setTime out is done) is called a callback
 
+// callback: a function you give to another function to be executed when the other function is finsished -- the function you call (invoke), 'calls back' by calling the function you gave it when it finishes
 
+function tellMeWhenDone(callback){
+	var a = 1000;
+	var b = 2000;
 
+	callback();
+}
 
+tellMeWhenDone(function(){
+	console.log("All done....");
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+tellMeWhenDone(function(){
+	console.log("I'm done, fam.");
+})
 

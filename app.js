@@ -1,21 +1,33 @@
-function buildFunctions(){
-	var arr = [];
-	
-	for(var i = 0; i < 3; i++){
-		arr.push(
-			(function(j){
-				return function(){
-					console.log(j + 1);
-				}
-			}(i))
-		)
+function forEach(arr, fn){
+	var result = [];
+	for(var i = 0; i < arr.length; i++){
+		result.push(
+			fn(arr[i])
+		);
 	}
-	
-	return arr;
+	return result;
 }
 
-var fs = buildFunctions();
-fs[0]();
-fs[1]();
-fs[2]();
+var nums = [1,2,3,4,5];
 
+var isEven = forEach(nums, function(item){
+	return item % 2 === 0;
+});
+
+console.log(isEven);
+
+var multiplyBy = function(num, item){
+	return item * num;
+}
+
+var multiplyBy3 = forEach(nums, multiplyBy.bind(this, 3));
+console.log(multiplyBy3);
+
+var boundMultiplyBy = function(numToTimes){
+	return function(num, item){
+		return item * num;
+	}.bind(this, numToTimes);
+}
+
+var multiplyBy5 = forEach(nums, boundMultiplyBy(5));
+console.log(multiplyBy5);
