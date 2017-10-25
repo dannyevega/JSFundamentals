@@ -1,33 +1,98 @@
-function forEach(arr, fn){
-	var result = [];
-	for(var i = 0; i < arr.length; i++){
-		result.push(
-			fn(arr[i])
-		);
+var person = {
+	firstName: "Default",
+	lastName: "Default",
+	getFullName: function(){
+		return this.firstName + " " + this.lastName;
 	}
-	return result;
 }
 
-var nums = [1,2,3,4,5];
-
-var isEven = forEach(nums, function(item){
-	return item % 2 === 0;
-});
-
-console.log(isEven);
-
-var multiplyBy = function(num, item){
-	return item * num;
+var john = {
+	firstName: "John",
+	lastName: "Doe"
 }
 
-var multiplyBy3 = forEach(nums, multiplyBy.bind(this, 3));
-console.log(multiplyBy3);
+// dont do this EVER! Only for demo purposes!!
+john.__proto__ = person;
+console.log(john.getFullName());
+console.log(john.firstName); // will log John, not Default because the JS engine finds the first firstName property it can find and it found it on the john Object, it didnt need to go up the chain
 
-var boundMultiplyBy = function(numToTimes){
-	return function(num, item){
-		return item * num;
-	}.bind(this, numToTimes);
+var jane = {
+	firstName: "Jane"
 }
 
-var multiplyBy5 = forEach(nums, boundMultiplyBy(5));
-console.log(multiplyBy5);
+jane.__proto__ = person;
+console.log(jane.getFullName()); // this will print Jane Default --> jane Object only has a firstName property so it will print her name, Jane -- the jane Object doesn't have a lastName property so it looks up the prototype chain which is person and finds it there
+
+
+
+// EVERYTHING HAS A PROTOTYPE
+var a = {};
+var b = function(){ };
+var c = [];
+
+
+
+// Reflection -- an object has the ability to look at itself, listing and changing its properties and methods --> this becomes very useful when we implement extend
+
+// Using john object from above -- this will print only the properties associated with john itself (firstName, lastName) and not anything from the prototype
+for(var prop in john){
+	if(john.hasOwnProperty(prop)){
+		console.log(prop + ": " + john[prop]);
+	}
+}
+
+
+
+// Using extend
+var jane = {
+	address: '111 Main St.',
+	getFormalFullName: function(){
+		return this.lastName + ', ' + this.lastName;
+	}
+}
+
+var jim = {
+	getFirstName: function(){
+		return firstName;
+	}
+}
+
+// we extend these methods and properties from other objects onto our john object
+_.extend(john, jane, jim);
+
+console.log(john);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
