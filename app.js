@@ -58,9 +58,9 @@ var jim = {
 }
 
 // we extend these methods and properties from other objects onto our john object
-_.extend(john, jane, jim);
+_.extend(john, jane, jim); // need to incluse underscore.js library in order to work
 
-console.log(john);
+console.log(john); // now john object will have all of the other methods and properties from the other two objects
 
 
 
