@@ -27,3 +27,26 @@ console.log(typeof z); // returns function as string
 
 // typeof --> a function that returns a string tells us what something is
 // instanceof --> dealing with object chains, tells you what something has in its prototype chain
+
+
+
+// STRICT MODE
+// lets say you create a variable person and define it later but you spell it incorrectly, common mistake. Printing persom to the console will print an empty Object because we created it -- this can cause some tough to track down errors
+var person;
+persom = {};
+console.log(persom);
+
+// adding below basically tells JS engine to please be stricter when you're parsing this code, apply more rules
+// this must go at the top of the file or on top of a function
+"use strict"; // at top of js file
+
+function logNewPerson(){
+	"use strict"; // at top of function in case you dont want to apply this to the whole file
+
+	var person2;
+	persom2 = {};
+	console.log(persom2);
+}
+logNewPerson();
+
+// using strict will not let you do the above on line 37 -- you must first declare a variable before you set it to anything
