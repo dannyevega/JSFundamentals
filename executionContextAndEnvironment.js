@@ -47,7 +47,7 @@ Finally, JS execution context runs your code. Variables and functions are going 
 Execution Context runs all these things for you in this order: Global Object --> 'this' --> Outer Environment --> Your Code
 */
 
-var a = "Hello World!";
+var a;
 
 function b(){
 
@@ -82,21 +82,3 @@ Line 69 is executed and now the variable a is set to the string "Hello World"
 
 Line 70 is executed and now prints the contents of variable a which is now set to a string
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

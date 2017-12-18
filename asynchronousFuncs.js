@@ -73,20 +73,3 @@ Event loop -- JS will continuously watch for event in the queue and respond if n
 
 How JS handles asynchronous events: Any events that happen outside of the engine get placed in the queue and if the execution stack is empty, it will process those events in the order they happened
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
