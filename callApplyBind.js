@@ -4,7 +4,7 @@
 
 // We use call, bind and apply
 
-// Function is a special type of Object that has a name or can be anonymous -- it has code within it that is invocable -- all functions in JS have access to cerrtain special methods -- i.e. call, bind and apply methods
+// Function is a special type of Object that has a name or can be anonymous -- it has code within it that is invocable -- all functions in JS have access to certain special methods -- i.e. call, bind and apply methods
 var person = {
 	firstName: "Ron",
 	lastName: "Doe",
