@@ -3,6 +3,12 @@ function greet(phrase){
 		console.log(phrase + " " + name);
 	}
 }
+
+function greet(phrase){
+	return function(name){
+		console.log(`${phrase} ${name}`);
+	}
+}
 greet("Hi"); // this invocation will itself return the inner function
 greet("Hi")("Danny"); // now you invoke the inner function by invoking the returned function
 
